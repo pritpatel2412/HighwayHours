@@ -95,8 +95,20 @@ All HOS logic runs server-side; the frontend only renders results.
 
 ## API
 
-- `POST /api/trips/` — create and compute a trip
-- `GET /api/trips/{id}/` — retrieve a saved trip
+- `GET /api/health/` — health check + DB connectivity
+- `POST /api/route/preview/` — geocode 3 addresses and return route geometry + distance
+- `POST /api/trips/` — create and compute a trip *(coming in step 4)*
+- `GET /api/trips/{id}/` — retrieve a saved trip *(coming in step 4)*
+
+### Route preview example
+
+```bash
+curl -X POST http://localhost:8000/api/route/preview/ \
+  -H "Content-Type: application/json" \
+  -d '{"current_location":"Chicago, IL","pickup_location":"Denver, CO","dropoff_location":"Los Angeles, CA"}'
+```
+
+Returns geocoded locations, per-leg distance/duration, and combined route geometry (lat/lng pairs for Leaflet).
 
 ## License
 

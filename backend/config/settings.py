@@ -117,3 +117,8 @@ NOMINATIM_USER_AGENT = os.environ.get(
     "NOMINATIM_USER_AGENT",
     "HighwayHours/1.0 (FMCSA trip planner assessment)",
 )
+
+OSRM_BASE_URL = os.environ.get(
+    "OSRM_BASE_URL",
+    "https://router.project-osrm.org",
+)
