@@ -1,46 +1,46 @@
-# 🚛 HighwayHours — FMCSA ELD Trip Planner & Daily Log Generator
+# HighwayHours — FMCSA ELD Trip Planner & Daily Log Generator
 
-HighwayHours is an FMCSA § 395 compliant **Trip Planner and Electronic Logging Device (ELD) Log Generator** web application. It converts 4 simple driver inputs into an optimized route, interactive map, chronological itinerary, and visually accurate 24-hour FMCSA daily driver log grid sheets downloadable as PDF or PNG documents.
+HighwayHours is an FMCSA § 395 compliant Electronic Logging Device (ELD) Trip Planner and Daily Log Generator web application. It converts core driver inputs into an optimized route, interactive map, detailed itinerary, and visually accurate 24-hour FMCSA daily driver log grid sheets exported as PDF or PNG documents.
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 1. **Smart HOS § 395 Discrete-Event Simulation Engine**:
    - **11-Hour Driving Limit**: Automatically caps continuous driving per shift.
    - **14-Hour Duty Window**: Enforces the 14-consecutive-hour window from shift start.
-   - **30-Minute Rest Break**: Mandatory break after 8 cumulative driving hours.
-   - **10-Consecutive-Hour Off-Duty Reset**: Inserts full 10-hr off-duty resets at interpolated lat/lng points along the route.
-   - **34-Hour Cycle Restart**: Triggers a 34-hr off-duty restart when the driver's accumulated 70-hr / 8-day cycle limit would be exceeded, resetting the cycle counter to 0.0 hrs.
+   - **30-Minute Rest Break**: Enforces mandatory break after 8 cumulative driving hours.
+   - **10-Consecutive-Hour Off-Duty Reset**: Inserts full 10-hour off-duty resets at calculated locations along the route.
+   - **34-Hour Cycle Restart**: Triggers a 34-hour off-duty restart when the driver's accumulated 70-hour / 8-day cycle limit is exceeded, resetting the cycle counter to 0.0 hours.
    - **1,000-Mile Fuel Stops**: Automatically places 30-minute On-Duty (Not Driving) fuel stops every 1,000 route miles.
-   - **Pickup & Dropoff Duties**: Includes 1-hour On-Duty (Not Driving) time at both pickup and dropoff locations.
+   - **Pickup & Dropoff Duties**: Includes 1-hour On-Duty (Not Driving) duration at both origin and destination locations.
 
 2. **Visual FMCSA 24-Hour Daily Log Sheet Generator**:
    - Renders SVG log sheets matching the official FMCSA "Driver's Daily Log" format.
    - 4 Status Rows: Off Duty, Sleeper Berth, Driving, On Duty (Not Driving).
-   - Continuous stepped line representing quarter-hour precision status changes.
-   - Remarks row displaying reverse-geocoded city/state locations for duty status changes.
+   - Continuous stepped lines representing quarter-hour precision status changes.
+   - Remarks section displaying geocoded city/state locations for duty status changes.
    - Right-hand totals column verifying that daily logged hours sum to exactly **24.00 hours**.
    - Multi-day trip handling with individual day tabs and stacked all-days view.
 
 3. **Interactive Route Map & Itinerary**:
-   - Leaflet + OpenStreetMap interactive map with route polyline and custom color-coded stop pins.
-   - Chronological timeline with mile markers, arrival timestamps, and duration badges.
+   - Leaflet and OpenStreetMap integration with route polyline rendering and custom stop markers.
+   - Chronological timeline with mile markers, arrival timestamps, and duration metrics.
 
 4. **PDF & PNG Log Export**:
-   - One-click client-side export to printable landscape PDF or high-resolution PNG image (`html2canvas` + `jspdf`).
+   - Client-side export to printable landscape PDF or high-resolution PNG documents via `html2canvas` and `jspdf`.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-* **Backend**: Django 5.0, Django REST Framework (DRF), Python 3.11, PostgreSQL via **Neon** (`dj-database-url`).
-* **Frontend**: React (Vite), TypeScript, Tailwind CSS, Leaflet (`react-leaflet`), Lucide Icons, `html2canvas`, `jspdf`.
-* **Routing & Geocoding**: OSRM API (route geometry/distance) & OpenStreetMap Nominatim (address geocoding and city/state reverse geocoding with database caching).
+- **Backend**: Django 5.0, Django REST Framework (DRF), Python 3.11, PostgreSQL via Neon (`dj-database-url`).
+- **Frontend**: React, Vite, TypeScript, Tailwind CSS, Leaflet (`react-leaflet`), Lucide Icons, `html2canvas`, `jspdf`.
+- **Routing & Geocoding**: OSRM API for route calculations and OpenStreetMap Nominatim for address geocoding with backend caching.
 
 ---
 
-## 🚀 Environment Variables (`.env`)
+## Environment Variables (`.env`)
 
 Create `.env` inside the `/backend` directory:
 
@@ -56,7 +56,7 @@ NOMINATIM_USER_AGENT=HighwayHoursELDPlanner/1.0
 
 ---
 
-## 💻 Local Development Setup
+## Local Development Setup
 
 ### 1. Backend Setup (Django)
 ```bash
@@ -83,7 +83,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 🌐 Production Deployment Guide
+## Production Deployment Guide
 
 ### Backend Deployment (Render / Railway)
 - **Service Type**: Web Service (Python 3.11)
@@ -100,9 +100,9 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 🧪 Testing
+## Testing
 
-To execute the unit test suite verifying HOS rules, fuel stops, 10-hr resets, 34-hr restarts, and 24-hr daily log total validation:
+To execute the unit test suite verifying HOS rules, fuel stops, 10-hour resets, 34-hour restarts, and 24-hour daily log validation:
 
 ```bash
 cd backend

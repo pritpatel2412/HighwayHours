@@ -71,22 +71,23 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
       <button
         onClick={exportPNG}
         disabled={isExporting}
-        className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition-all disabled:opacity-50"
+        className="px-3.5 py-1.5 bg-[#F4F5F5] hover:bg-[#171719] hover:text-white text-[#232427] border border-black/5 text-xs font-semibold rounded-full flex items-center gap-1.5 transition-all shadow-sm disabled:opacity-50"
         title="Download high-resolution PNG image of this log sheet"
       >
-        {isExporting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ImageIcon className="w-3.5 h-3.5 text-blue-400" />}
-        PNG Image
+        {isExporting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ImageIcon className="w-3.5 h-3.5 text-[#E34A32]" />}
+        Export PNG
       </button>
 
       <button
         onClick={exportPDF}
         disabled={isExporting}
-        className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white border border-indigo-500 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition-all shadow-md shadow-indigo-500/20 disabled:opacity-50"
+        className="button-orange px-4 py-1.5 text-white text-xs font-semibold rounded-full flex items-center gap-1.5 transition-all disabled:opacity-50"
         title="Download printable PDF document of this log sheet"
       >
         {isExporting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <FileText className="w-3.5 h-3.5 text-white" />}
-        PDF Document
+        Export PDF
       </button>
     </div>
   );
 };
+

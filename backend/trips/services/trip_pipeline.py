@@ -38,9 +38,9 @@ def create_trip(
                 label=label,
                 distance_miles=leg["distance_miles"],
                 duration_hours=leg["duration_hours"],
-                end_lat=end_loc["lat"],
-                end_lng=end_loc["lng"],
-                end_remark=f"{end_loc['city']}, {end_loc['state']}".strip(", "),
+                end_lat=end_loc.lat,
+                end_lng=end_loc.lng,
+                end_remark=f"{end_loc.city}, {end_loc.state}".strip(", "),
             )
         )
 
@@ -71,8 +71,9 @@ def create_trip(
             total_duration_hours=round(total_duration_hours, 2),
             num_days=simulation.num_days,
             cycle_restart_required=simulation.cycle_restart_required,
-            locations=route.locations,
+            locations={k: asdict(v) for k, v in route.locations.items()},
             route_geometry=route.geometry,
+
             summary={
                 "total_distance_miles": route.total_distance_miles,
                 "total_driving_hours": simulation.total_driving_hours,

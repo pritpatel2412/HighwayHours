@@ -80,40 +80,41 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
   });
 
   return (
-    <div className="bg-white text-slate-900 rounded-2xl p-6 shadow-xl border border-slate-200 overflow-x-auto my-6 print:shadow-none print:border-none print:m-0">
+    <div className="card-surface rounded-[28px] p-6 shadow-xl border border-black/5 overflow-x-auto my-4 print:shadow-none print:border-none print:m-0">
       {/* Header Fields */}
-      <div className="border-b-2 border-slate-900 pb-4 mb-4">
-        <div className="flex justify-between items-center mb-2">
+      <div className="border-b border-black/10 pb-4 mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
           <div>
-            <h3 className="text-lg font-black uppercase tracking-wider text-slate-900">
-              Driver's Daily Log (24 Hours)
+            <h3 className="text-base sm:text-lg font-extrabold uppercase tracking-tight text-[#232427] flex items-center gap-2">
+              <span>Driver's Daily Log</span>
+              <span className="text-xs font-serif-accent text-[#E34A32] lowercase text-normal">(24 Hours Grid)</span>
             </h3>
-            <p className="text-xs text-slate-500 font-mono">FMCSA Form § 395.8 Compliant Record of Duty Status</p>
+            <p className="text-xs text-[#55575c] font-mono">FMCSA Form § 395.8 Compliant Record of Duty Status</p>
           </div>
-          <div className="text-right">
-            <span className="inline-block bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider">
+          <div className="flex items-center gap-3">
+            <span className="inline-block bg-[#171719] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
               Day {log.day_number}
             </span>
-            <div className="text-xs font-bold text-slate-700 mt-1">{formattedDate}</div>
+            <div className="text-xs font-bold text-[#232427]">{formattedDate}</div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs bg-slate-50 p-3 rounded-lg border border-slate-200 mt-3 font-mono">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs bg-[#F7F7F5] p-3.5 rounded-2xl border border-black/5 mt-3 font-mono">
           <div>
-            <span className="text-slate-400 block font-sans text-[10px]">TOTAL MILES DRIVEN TODAY</span>
-            <span className="font-bold text-slate-900 text-sm">{log.total_miles} mi</span>
+            <span className="text-[#8a8c91] block font-sans text-[10px] uppercase tracking-wider font-semibold">TOTAL MILES DRIVEN</span>
+            <span className="font-bold text-[#232427] text-sm">{log.total_miles} mi</span>
           </div>
           <div>
-            <span className="text-slate-400 block font-sans text-[10px]">DRIVER NAME</span>
-            <span className="font-bold text-slate-900">{driverName}</span>
+            <span className="text-[#8a8c91] block font-sans text-[10px] uppercase tracking-wider font-semibold">DRIVER NAME</span>
+            <span className="font-bold text-[#232427]">{driverName}</span>
           </div>
           <div>
-            <span className="text-slate-400 block font-sans text-[10px]">CARRIER NAME</span>
-            <span className="font-bold text-slate-900">{carrierName}</span>
+            <span className="text-[#8a8c91] block font-sans text-[10px] uppercase tracking-wider font-semibold">CARRIER NAME</span>
+            <span className="font-bold text-[#232427]">{carrierName}</span>
           </div>
           <div>
-            <span className="text-slate-400 block font-sans text-[10px]">VEHICLE / TRAILER #</span>
-            <span className="font-bold text-slate-900">{truckNumber}</span>
+            <span className="text-[#8a8c91] block font-sans text-[10px] uppercase tracking-wider font-semibold">VEHICLE / TRAILER #</span>
+            <span className="font-bold text-[#232427]">{truckNumber}</span>
           </div>
         </div>
       </div>
@@ -130,8 +131,8 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
             y={0}
             width={GRID_WIDTH}
             height={GRID_HEIGHT}
-            fill="#fafafa"
-            stroke="#1e293b"
+            fill="#FAFBFB"
+            stroke="#232427"
             strokeWidth="1.5"
           />
 
@@ -152,7 +153,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
                     y1={y}
                     x2={LEFT_PADDING + GRID_WIDTH + RIGHT_PADDING}
                     y2={y}
-                    stroke="#cbd5e1"
+                    stroke="#E2E4E6"
                     strokeWidth="1"
                   />
                 )}
@@ -162,7 +163,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
                   y={y + ROW_HEIGHT / 2 + 4}
                   fontSize="11"
                   fontWeight="700"
-                  fill="#0f172a"
+                  fill="#232427"
                 >
                   {row.name}
                 </text>
@@ -172,8 +173,8 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
                   y={y}
                   width={RIGHT_PADDING}
                   height={ROW_HEIGHT}
-                  fill="#f1f5f9"
-                  stroke="#cbd5e1"
+                  fill="#F4F5F5"
+                  stroke="#E2E4E6"
                 />
                 <text
                   x={LEFT_PADDING + GRID_WIDTH + RIGHT_PADDING / 2}
@@ -181,7 +182,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
                   fontSize="12"
                   fontWeight="800"
                   textAnchor="middle"
-                  fill="#0f172a"
+                  fill="#232427"
                 >
                   {(row.total || 0).toFixed(2)}
                 </text>
@@ -203,7 +204,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
                   y1={0}
                   x2={x}
                   y2={GRID_HEIGHT}
-                  stroke={hr === 0 || hr === 24 || isMid ? '#0f172a' : '#cbd5e1'}
+                  stroke={hr === 0 || hr === 24 || isMid ? '#232427' : '#E2E4E6'}
                   strokeWidth={hr === 0 || hr === 24 || isMid ? '1.5' : '1'}
                 />
 
@@ -221,7 +222,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
                             y1={rowIdx * ROW_HEIGHT}
                             x2={qx}
                             y2={rowIdx * ROW_HEIGHT + tickHeight}
-                            stroke="#cbd5e1"
+                            stroke="#CBD1D6"
                             strokeWidth="0.75"
                           />
                         ))}
@@ -236,7 +237,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
                     y={-6}
                     fontSize="10"
                     fontWeight="700"
-                    fill="#334155"
+                    fill="#55575c"
                     textAnchor="middle"
                   >
                     {hr === 0 ? 'M' : hr === 12 ? 'N' : hr > 12 ? hr - 12 : hr}
@@ -252,7 +253,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
             y={-20}
             width={RIGHT_PADDING}
             height={20}
-            fill="#0f172a"
+            fill="#171719"
           />
           <text
             x={LEFT_PADDING + GRID_WIDTH + RIGHT_PADDING / 2}
@@ -265,11 +266,11 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
             TOTAL HRS
           </text>
 
-          {/* Plotted Duty Status Line */}
+          {/* Plotted Duty Status Line (SprintForge Orange Signature Line) */}
           <path
             d={buildPathD(log.segments)}
             fill="none"
-            stroke="#2563eb"
+            stroke="#E34A32"
             strokeWidth="3.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -277,13 +278,13 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
 
           {/* Right Bottom Total Sum Verification Box */}
           <g transform={`translate(${LEFT_PADDING + GRID_WIDTH}, ${GRID_HEIGHT})`}>
-            <rect x={0} y={0} width={RIGHT_PADDING} height={32} fill="#1e293b" />
+            <rect x={0} y={0} width={RIGHT_PADDING} height={32} fill="#171719" />
             <text
               x={RIGHT_PADDING / 2}
               y={20}
               fontSize="12"
               fontWeight="900"
-              fill="#38bdf8"
+              fill="#E34A32"
               textAnchor="middle"
             >
               {totalSum} hrs
@@ -296,7 +297,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
             y1={GRID_HEIGHT + 35}
             x2={LEFT_PADDING + GRID_WIDTH + RIGHT_PADDING}
             y2={GRID_HEIGHT + 35}
-            stroke="#0f172a"
+            stroke="#232427"
             strokeWidth="1.5"
           />
           <text
@@ -304,7 +305,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
             y={GRID_HEIGHT + 52}
             fontSize="11"
             fontWeight="800"
-            fill="#0f172a"
+            fill="#232427"
             className="uppercase tracking-wider"
           >
             REMARKS (City, State / Highway Location)
@@ -313,7 +314,7 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
       </div>
 
       {/* Remarks List */}
-      <div className="mt-4 pt-3 border-t border-slate-200">
+      <div className="mt-4 pt-3 border-t border-black/10">
         {log.remarks && log.remarks.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono">
             {log.remarks.map((rem, idx) => {
@@ -321,20 +322,21 @@ export const DailyLogGrid: React.FC<DailyLogGridProps> = ({
               return (
                 <div
                   key={idx}
-                  className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md"
+                  className="flex items-center gap-2 bg-[#F7F7F5] border border-black/5 px-3.5 py-2 rounded-2xl"
                 >
-                  <span className="font-bold text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded text-[11px]">
+                  <span className="font-bold text-[#E34A32] bg-[#E34A32]/10 px-2 py-0.5 rounded-full text-[11px]">
                     {hr} hrs
                   </span>
-                  <span className="text-slate-700 truncate">{rem.remark}</span>
+                  <span className="text-[#232427] font-sans font-medium truncate">{rem.remark}</span>
                 </div>
               );
             })}
           </div>
         ) : (
-          <div className="text-xs text-slate-400 italic">No duty status changes recorded on this log sheet.</div>
+          <div className="text-xs text-[#8a8c91] italic">No duty status changes recorded on this log sheet.</div>
         )}
       </div>
     </div>
   );
 };
+

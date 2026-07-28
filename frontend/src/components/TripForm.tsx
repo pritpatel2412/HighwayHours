@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Navigation, Truck, Clock, Sparkles, AlertCircle } from 'lucide-react';
+import { Navigation, MapPin, Clock, Sparkles, AlertCircle, ArrowRight } from 'lucide-react';
 import { PlanTripParams } from '../services/api';
 
 interface TripFormProps {
@@ -46,78 +46,105 @@ export const TripForm: React.FC<TripFormProps> = ({ onSubmit, isLoading }) => {
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl backdrop-blur-xl text-slate-100">
-      <div className="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
+    <div className="card-surface rounded-[28px] p-6 md:p-8 space-y-6">
+      {/* Form Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-black/5 pb-5">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <Truck className="w-5 h-5 text-indigo-400" />
-            Plan Trip & Generate Daily Logs
+          <div className="flex items-center gap-2">
+            <span className="status-chip rounded-full px-3 py-0.5 text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1.5">
+              <Sparkles className="w-3 h-3 text-[#E34A32]" /> FMCSA § 395 LOGS
+            </span>
+            <span className="text-xs text-[#8a8c91] font-mono">70-Hour / 8-Day Cycle</span>
+          </div>
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight text-[#232427] mt-2">
+            Configure Trip & <span className="font-serif-accent text-[#E34A32]">ELD Driver Logs</span>
           </h2>
-          <p className="text-xs text-slate-400 mt-1">
-            Calculate HOS §395 compliant routes, fuel stops, and 24-hr daily logs.
+          <p className="text-xs text-[#55575c] mt-1">
+            Automated route calculation, 1,000-mile fuel scheduling, 10-hr rest stops, and 24-hr daily RODS generation.
           </p>
         </div>
-        <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-semibold rounded-full flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5" /> 70-Hr / 8-Day Cycle
-        </span>
+
+        {/* Quick Presets */}
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <span className="text-[#8a8c91] font-medium text-[11px] uppercase tracking-wider">Presets:</span>
+          <button
+            type="button"
+            onClick={() => setPreset('Denver, CO', 'Kansas City, MO', 'Dallas, TX', '10.0')}
+            className="px-3 py-1 rounded-full bg-[#F4F5F5] hover:bg-[#171719] hover:text-white border border-black/5 text-[#55575c] font-medium transition-all"
+          >
+            Short Trip (1 Day)
+          </button>
+          <button
+            type="button"
+            onClick={() => setPreset('New York, NY', 'Chicago, IL', 'Los Angeles, CA', '62.0')}
+            className="px-3 py-1 rounded-full bg-[#F05A3C]/10 hover:bg-[#E34A32] hover:text-white border border-[#E34A32]/20 text-[#E34A32] font-semibold transition-all"
+          >
+            34-Hr Restart Trip
+          </button>
+        </div>
       </div>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-xl flex items-center gap-2">
+        <div className="p-4 rounded-2xl bg-[#E34A32]/10 border border-[#E34A32]/30 text-[#E34A32] text-xs font-semibold flex items-center gap-2 animate-in fade-in duration-200">
           <AlertCircle className="w-4 h-4 shrink-0" />
-          {error}
+          <span>{error}</span>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Form Fields */}
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5 flex items-center gap-1">
-              <Navigation className="w-3.5 h-3.5 text-blue-400" /> Current Location
+          {/* Current Location */}
+          <div className="space-y-1.5">
+            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#55575c] flex items-center gap-1.5">
+              <Navigation className="w-3.5 h-3.5 text-[#E34A32]" /> Current Location
             </label>
             <input
               type="text"
               value={currentLocation}
               onChange={(e) => setCurrentLocation(e.target.value)}
               placeholder="e.g. New York, NY"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full bg-[#F7F7F5] border border-black/10 rounded-2xl px-4 py-3 text-sm text-[#232427] placeholder-[#8a8c91] focus:outline-none focus:ring-2 focus:ring-[#E34A32] focus:border-[#E34A32] transition-all font-medium"
               required
             />
           </div>
 
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5 flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" /> Pickup Location
+          {/* Pickup Location */}
+          <div className="space-y-1.5">
+            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#55575c] flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#171719]" /> Pickup Location (1 Hr On-Duty)
             </label>
             <input
               type="text"
               value={pickupLocation}
               onChange={(e) => setPickupLocation(e.target.value)}
               placeholder="e.g. Chicago, IL"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full bg-[#F7F7F5] border border-black/10 rounded-2xl px-4 py-3 text-sm text-[#232427] placeholder-[#8a8c91] focus:outline-none focus:ring-2 focus:ring-[#E34A32] focus:border-[#E34A32] transition-all font-medium"
               required
             />
           </div>
 
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5 flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-amber-400" /> Dropoff Location
+          {/* Dropoff Location */}
+          <div className="space-y-1.5">
+            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#55575c] flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#E34A32]" /> Dropoff Location (1 Hr On-Duty)
             </label>
             <input
               type="text"
               value={dropoffLocation}
               onChange={(e) => setDropoffLocation(e.target.value)}
               placeholder="e.g. Los Angeles, CA"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full bg-[#F7F7F5] border border-black/10 rounded-2xl px-4 py-3 text-sm text-[#232427] placeholder-[#8a8c91] focus:outline-none focus:ring-2 focus:ring-[#E34A32] focus:border-[#E34A32] transition-all font-medium"
               required
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5 flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-indigo-400" /> Current Cycle Hours Used (0 – 70 hrs)
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+          {/* Cycle Hours */}
+          <div className="space-y-1.5">
+            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#55575c] flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-[#E34A32]" /> Starting Cycle Hours Used (0 – 70 hrs)
             </label>
             <div className="relative">
               <input
@@ -127,52 +154,36 @@ export const TripForm: React.FC<TripFormProps> = ({ onSubmit, isLoading }) => {
                 max="70"
                 value={currentCycleUsed}
                 onChange={(e) => setCurrentCycleUsed(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                className="w-full bg-[#F7F7F5] border border-black/10 rounded-2xl px-4 py-3 text-sm text-[#232427] placeholder-[#8a8c91] focus:outline-none focus:ring-2 focus:ring-[#E34A32] focus:border-[#E34A32] transition-all font-medium pr-20"
                 required
               />
-              <span className="absolute right-3 top-2.5 text-xs text-slate-500 font-medium">/ 70.0 hrs</span>
+              <span className="absolute right-4 top-3.5 text-xs text-[#8a8c91] font-mono font-semibold">/ 70.0 hrs</span>
             </div>
           </div>
 
-          <div className="flex flex-col justify-end">
-            <div className="flex items-center gap-2 text-xs text-slate-400 mb-1.5">
-              <span>Quick Presets:</span>
-              <button
-                type="button"
-                onClick={() => setPreset('Denver, CO', 'Kansas City, MO', 'Dallas, TX', '10.0')}
-                className="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition-colors"
-              >
-                Short Trip
-              </button>
-              <button
-                type="button"
-                onClick={() => setPreset('New York, NY', 'Chicago, IL', 'Los Angeles, CA', '62.0')}
-                className="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded transition-colors"
-              >
-                34-Hr Restart
-              </button>
-            </div>
+          {/* Action Button */}
+          <div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="button-orange w-full py-3.5 px-8 rounded-full text-sm font-semibold tracking-wide flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+            >
+              {isLoading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Computing HOS Route & Generating Logs...</span>
+                </>
+              ) : (
+                <>
+                  <span>Calculate HOS Route & Generate Logs</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
           </div>
         </div>
-
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full mt-4 bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-indigo-500/25 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
-        >
-          {isLoading ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              <span>Calculating Route & Generating HOS Logs...</span>
-            </>
-          ) : (
-            <>
-              <Truck className="w-5 h-5" />
-              <span>Plan Trip & Build Logs</span>
-            </>
-          )}
-        </button>
       </form>
     </div>
   );
 };
+

@@ -24,23 +24,24 @@ function createCustomIcon(color: string, label: string) {
     html: `
       <div style="
         background-color: ${color};
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         border: 2px solid #ffffff;
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5);
+        box-shadow: 0 4px 12px rgba(35,36,39,0.3);
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-weight: bold;
+        font-weight: 800;
         font-size: 11px;
+        font-family: Inter, sans-serif;
       ">
         ${label}
       </div>
     `,
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
   });
 }
 
@@ -48,7 +49,7 @@ function MapRecenter({ bounds }: { bounds: L.LatLngBoundsExpression | null }) {
   const map = useMap();
   useEffect(() => {
     if (bounds) {
-      map.fitBounds(bounds, { padding: [40, 40] });
+      map.fitBounds(bounds, { padding: [50, 50] });
     }
   }, [bounds, map]);
   return null;
@@ -69,33 +70,46 @@ export const RouteMap: React.FC<RouteMapProps> = ({ routeGeometry, locations, st
 
   const getStopMarkerStyle = (stopType: string) => {
     switch (stopType) {
-      case 'pickup': return { color: '#10b981', label: 'P' };
-      case 'dropoff': return { color: '#a855f7', label: 'D' };
-      case 'fuel': return { color: '#f59e0b', label: '⛽' };
-      case 'rest': return { color: '#6366f1', label: '🌙' };
-      case 'break': return { color: '#06b6d4', label: '☕' };
-      case 'cycle_restart': return { color: '#f43f5e', label: '🔄' };
-      default: return { color: '#64748b', label: '•' };
+      case 'pickup': return { color: '#171719', label: 'P' };
+      case 'dropoff': return { color: '#E34A32', label: 'D' };
+      case 'fuel': return { color: '#F05A3C', label: '⛽' };
+      case 'rest': return { color: '#55575c', label: '🌙' };
+      case 'break': return { color: '#8a8c91', label: '☕' };
+      case 'cycle_restart': return { color: '#E34A32', label: '🔄' };
+      default: return { color: '#232427', label: '•' };
     }
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl relative">
-      <div className="p-4 bg-slate-900/80 border-b border-slate-800 flex items-center justify-between z-10 backdrop-blur-md">
-        <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-          <span>🗺️</span> Interactive Route Map & HOS Stops
+    <div className="card-surface rounded-[28px] overflow-hidden shadow-xl border border-black/5 relative">
+      <div className="p-4 md:p-5 bg-white border-b border-black/5 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <h3 className="text-sm font-bold text-[#232427] flex items-center gap-2 tracking-tight">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#E34A32]"></span> Interactive Route Map & HOS Stops
         </h3>
-        <div className="flex flex-wrap gap-2 text-xs">
-          <span className="flex items-center gap-1.5 text-slate-300"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span> Start</span>
-          <span className="flex items-center gap-1.5 text-slate-300"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Pickup</span>
-          <span className="flex items-center gap-1.5 text-slate-300"><span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span> Dropoff</span>
-          <span className="flex items-center gap-1.5 text-slate-300"><span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Fuel (1000m)</span>
-          <span className="flex items-center gap-1.5 text-slate-300"><span className="w-2.5 h-2.5 rounded-full bg-indigo-500"></span> 10-Hr Rest</span>
-          <span className="flex items-center gap-1.5 text-slate-300"><span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span> 34-Hr Restart</span>
+
+        <div className="flex flex-wrap gap-2 text-[11px] font-semibold">
+          <span className="px-2.5 py-0.5 rounded-full bg-[#F4F5F5] text-[#171719] border border-black/5 flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#171719]"></span> Start
+          </span>
+          <span className="px-2.5 py-0.5 rounded-full bg-[#F4F5F5] text-[#171719] border border-black/5 flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#171719]"></span> Pickup
+          </span>
+          <span className="px-2.5 py-0.5 rounded-full bg-[#E34A32]/10 text-[#E34A32] border border-[#E34A32]/20 flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#E34A32]"></span> Dropoff
+          </span>
+          <span className="px-2.5 py-0.5 rounded-full bg-[#F05A3C]/10 text-[#F05A3C] border border-[#F05A3C]/20 flex items-center gap-1.5">
+            <span>⛽</span> Fuel Stop
+          </span>
+          <span className="px-2.5 py-0.5 rounded-full bg-[#F4F5F5] text-[#55575c] border border-black/5 flex items-center gap-1.5">
+            <span>🌙</span> 10-Hr Rest
+          </span>
+          <span className="px-2.5 py-0.5 rounded-full bg-[#E34A32]/10 text-[#E34A32] border border-[#E34A32]/20 flex items-center gap-1.5">
+            <span>🔄</span> 34-Hr Restart
+          </span>
         </div>
       </div>
 
-      <div className="h-[420px] w-full relative z-0">
+      <div className="h-[440px] w-full relative z-0">
         <MapContainer
           center={polylineCoords.length > 0 ? polylineCoords[0] : [39.8283, -98.5795]}
           zoom={5}
@@ -112,35 +126,35 @@ export const RouteMap: React.FC<RouteMapProps> = ({ routeGeometry, locations, st
           {polylineCoords.length > 0 && (
             <Polyline
               positions={polylineCoords}
-              color="#6366f1"
+              color="#E34A32"
               weight={5}
-              opacity={0.8}
+              opacity={0.85}
             />
           )}
 
           {currentLoc && (
-            <Marker position={[currentLoc.lat, currentLoc.lng]} icon={createCustomIcon('#3b82f6', 'S')}>
-              <Popup className="text-slate-900">
-                <div className="font-bold">Start / Current Location</div>
-                <div className="text-xs text-slate-600">{currentLoc.display_name}</div>
+            <Marker position={[currentLoc.lat, currentLoc.lng]} icon={createCustomIcon('#171719', 'S')}>
+              <Popup className="text-[#232427]">
+                <div className="font-bold text-sm">Start / Current Location</div>
+                <div className="text-xs text-[#55575c]">{currentLoc.display_name}</div>
               </Popup>
             </Marker>
           )}
 
           {pickupLoc && (
-            <Marker position={[pickupLoc.lat, pickupLoc.lng]} icon={createCustomIcon('#10b981', 'P')}>
-              <Popup className="text-slate-900">
-                <div className="font-bold">Pickup Location (1 Hr On-Duty)</div>
-                <div className="text-xs text-slate-600">{pickupLoc.display_name}</div>
+            <Marker position={[pickupLoc.lat, pickupLoc.lng]} icon={createCustomIcon('#171719', 'P')}>
+              <Popup className="text-[#232427]">
+                <div className="font-bold text-sm">Pickup Location (1 Hr On-Duty)</div>
+                <div className="text-xs text-[#55575c]">{pickupLoc.display_name}</div>
               </Popup>
             </Marker>
           )}
 
           {dropoffLoc && (
-            <Marker position={[dropoffLoc.lat, dropoffLoc.lng]} icon={createCustomIcon('#a855f7', 'D')}>
-              <Popup className="text-slate-900">
-                <div className="font-bold">Dropoff Location (1 Hr On-Duty)</div>
-                <div className="text-xs text-slate-600">{dropoffLoc.display_name}</div>
+            <Marker position={[dropoffLoc.lat, dropoffLoc.lng]} icon={createCustomIcon('#E34A32', 'D')}>
+              <Popup className="text-[#232427]">
+                <div className="font-bold text-sm text-[#E34A32]">Dropoff Location (1 Hr On-Duty)</div>
+                <div className="text-xs text-[#55575c]">{dropoffLoc.display_name}</div>
               </Popup>
             </Marker>
           )}
@@ -154,10 +168,10 @@ export const RouteMap: React.FC<RouteMapProps> = ({ routeGeometry, locations, st
                 position={[stop.lat, stop.lng]}
                 icon={createCustomIcon(style.color, style.label)}
               >
-                <Popup className="text-slate-900">
-                  <div className="font-bold uppercase text-xs tracking-wider text-slate-500">{stop.stop_type.replace('_', ' ')}</div>
+                <Popup className="text-[#232427]">
+                  <div className="font-bold uppercase text-[10px] tracking-wider text-[#8a8c91]">{stop.stop_type.replace('_', ' ')}</div>
                   <div className="font-semibold text-sm">{stop.remark}</div>
-                  <div className="text-xs text-slate-600 mt-1">
+                  <div className="text-xs text-[#55575c] mt-1">
                     Duration: {stop.duration_minutes} mins
                     {stop.mile_marker !== null && ` • Mile Marker: ${stop.mile_marker.toFixed(0)}`}
                   </div>
@@ -170,3 +184,4 @@ export const RouteMap: React.FC<RouteMapProps> = ({ routeGeometry, locations, st
     </div>
   );
 };
+
