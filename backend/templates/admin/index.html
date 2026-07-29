@@ -1,0 +1,197 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static log %}
+
+{% block coltype %}colMS{% endblock %}
+{% block bodyclass %}{{ block.super }} dashboard sprintforge-dashboard{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+<div id="content-main" class="sprintforge-dashboard-main">
+  
+  <!-- SPRINTFORGE HERO COMMAND SECTION (40px radius shell container) -->
+  <section class="sprintforge-hero-shell rise-in-animate">
+    <div class="hero-left-column">
+      <div class="hero-chip-pill">
+        <span class="status-pulse-dot"></span>
+        <span class="chip-label">SPRINTFORGE VISUAL SYSTEM &bull; INDUSTRIAL AI ELEGANCE</span>
+      </div>
+      <h1 class="hero-display-heading">
+        High-Performance <span class="serif-italic">ELD &amp; Fleet Pipeline</span> Engine
+      </h1>
+      <p class="hero-body-desc">
+        Welcome to the centralized HighwayHours control terminal. Monitor real-time driver telemetry, manage compliance records, and orchestrate automated FMCSA log generation with zero-friction clinical efficiency.
+      </p>
+      
+      <div class="hero-metrics-grid">
+        <div class="metric-card hover-lift">
+          <span class="metric-ui-label">HOS ENGINE STATUS</span>
+          <div class="metric-value-row">
+            <span class="status-indicator active"></span>
+            <span class="metric-num text-orange">FMCSA Ready</span>
+          </div>
+          <span class="metric-sub">Automated 24h cycle sync</span>
+        </div>
+        
+        <div class="metric-card hover-lift">
+          <span class="metric-ui-label">DISPATCH TELEMETRY</span>
+          <div class="metric-value-row">
+            <span class="metric-num">Live Map Sync</span>
+          </div>
+          <span class="metric-sub">OpenStreetMap &amp; Leaflet</span>
+        </div>
+        
+        <div class="metric-card hover-lift">
+          <span class="metric-ui-label">CLOUD PIPELINE</span>
+          <div class="metric-value-row">
+            <span class="metric-num">Render + Vercel</span>
+          </div>
+          <span class="metric-sub">Continuous Ship Time</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GHOST PREVIEW UI MODULE (Geometric Abstraction) -->
+    <div class="hero-ghost-column drift-animate" aria-hidden="true">
+      <div class="ghost-ui-shell">
+        <div class="ghost-topbar">
+          <div class="ghost-dots">
+            <span class="g-dot r"></span><span class="g-dot y"></span><span class="g-dot g"></span>
+          </div>
+          <span class="ghost-title">HOS_GRID_RENDERER_V1.0</span>
+          <span class="ghost-badge">⚡ LIVE TELEMETRY</span>
+        </div>
+        <div class="ghost-canvas">
+          <div class="ghost-track-line">
+            <div class="ghost-segment off-duty" style="width: 20%;" title="Off Duty"></div>
+            <div class="ghost-segment sleeper" style="width: 15%;" title="Sleeper Berth"></div>
+            <div class="ghost-segment driving active" style="width: 50%;" title="Driving (Active)">
+              <span class="ghost-glow"></span>
+            </div>
+            <div class="ghost-segment on-duty" style="width: 15%;" title="On Duty (Not Driving)"></div>
+          </div>
+          <div class="ghost-labels">
+            <span>M</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>N</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>M</span>
+          </div>
+          <div class="ghost-stats-row">
+            <div class="ghost-stat-box"><span class="stat-lbl">DRIVE TIME</span><span class="stat-val text-orange">09h 45m</span></div>
+            <div class="ghost-stat-box"><span class="stat-lbl">SHIFT REMAIN</span><span class="stat-val">04h 15m</span></div>
+            <div class="ghost-stat-box"><span class="stat-lbl">VIOLATIONS</span><span class="stat-val clean">NONE (0)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHELL IN SHELL: APPLICATION MODULES & RECENT ACTIONS -->
+  <div class="sprintforge-grid-columns">
+    <!-- Left Column: App Models & Feature Tiles -->
+    <div class="app-modules-column">
+      <h2 class="section-ui-heading">
+        <span class="heading-icon">📦</span> DATABASE &amp; FLEET MODULES
+        <span class="ship-badge">SHIP TIME OPTIMIZED</span>
+      </h2>
+
+      {% if app_list %}
+        {% for app in app_list %}
+          <div class="sprintforge-feature-tile module">
+            <div class="tile-header-bar">
+              <div class="tile-title-wrap">
+                <div class="tile-square-icon">{% if app.app_label == 'trips' %}🚚{% elif app.app_label == 'auth' %}🛡️{% else %}⚙️{% endif %}</div>
+                <div class="tile-meta-text">
+                  <h3 class="tile-app-name"><a href="{{ app.app_url }}">{{ app.name }}</a></h3>
+                  <span class="tile-caption">{% if app.app_label == 'trips' %}Driver logs, trip routes &amp; ELD telemetry records{% elif app.app_label == 'auth' %}User access control, permissions &amp; organization security{% else %}System data administration and application configuration{% endif %}</span>
+                </div>
+              </div>
+              <span class="tile-status-chip">⚡ SHIP TIME</span>
+            </div>
+
+            <table class="sprintforge-models-table">
+              {% for model in app.models %}
+                <tr class="model-row">
+                  <th scope="row" class="model-name-cell">
+                    <a href="{{ model.admin_url }}" class="model-link">{{ model.name }}</a>
+                  </th>
+                  <td class="model-actions-cell">
+                    {% if model.add_url %}
+                      <a href="{{ model.add_url }}" class="pill-btn add-btn">+ Add new</a>
+                    {% endif %}
+                    {% if model.admin_url %}
+                      <a href="{{ model.admin_url }}" class="pill-btn view-btn">Manage &rarr;</a>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="sprintforge-empty-card">
+          <p>{% translate 'No administrative modules available for your user profile.' %}</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Right Column: Recent Activity Log & System Health -->
+    <div class="sidebar-modules-column">
+      <div class="sprintforge-card-surface recent-actions-card">
+        <div class="card-title-bar">
+          <div class="card-title-left">
+            <span class="icon">📜</span> 
+            <span class="ui-label">RECENT ACTIONS</span>
+          </div>
+          <span class="pill-tag">LOG FEED</span>
+        </div>
+        <div class="recent-actions-content">
+          {% get_admin_log 8 as admin_log %}
+          {% if not admin_log %}
+            <p class="empty-log">No recent audit log entries.</p>
+          {% else %}
+            <ul class="action-list">
+              {% for entry in admin_log %}
+                <li class="action-item {% if entry.is_addition %}add{% elif entry.is_change %}change{% elif entry.is_deletion %}delete{% endif %}">
+                  <span class="action-icon">
+                    {% if entry.is_addition %}➕{% elif entry.is_change %}✏️{% elif entry.is_deletion %}🗑️{% else %}📌{% endif %}
+                  </span>
+                  <div class="action-details">
+                    <span class="action-title">
+                      {% if entry.is_deletion or not entry.get_admin_url %}
+                        {{ entry.object_repr }}
+                      {% else %}
+                        <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                      {% endif %}
+                    </span>
+                    <span class="action-meta">{{ entry.content_type }} &bull; {{ entry.action_time|timesince }} ago</span>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Package Highlight Card (Vertical block with clear pricing & features, scale 1.04x) -->
+      <div class="sprintforge-card-surface package-highlight-card">
+        <div class="package-header">
+          <span class="package-tag">MOST BOOKED TIER</span>
+          <span class="package-ver">v1.0.0-PRO</span>
+        </div>
+        <h4 class="package-name">Enterprise Fleet Pro <em class="serif-accent">&amp; Telemetry</em></h4>
+        <div class="package-status-row">
+          <span class="status-pulse-dot"></span> All 5 ELD Compliance Engines Online
+        </div>
+        <ul class="package-features">
+          <li><span class="checkmark">✓</span> Automated 30-min Rest Break calculation</li>
+          <li><span class="checkmark">✓</span> Real-time polyline Leaflet route plotting</li>
+          <li><span class="checkmark">✓</span> FMCSA-compliant visual daily log grid</li>
+          <li><span class="checkmark">✓</span> Zero-latency Neon Cloud Postgres sync</li>
+        </ul>
+        <div class="package-footer">
+          <span class="ship-time">⚡ SHIP TIME: INSTANT DEPLOY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

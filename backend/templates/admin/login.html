@@ -3,5 +3,19 @@
 
 {% block extrahead %}
 {{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="login-brand-header">
+  <div class="login-logo-circle">🚛</div>
+  <h1 class="login-brand-title">Highway<span class="brand-orange">Hours</span></h1>
+  <p class="login-brand-subtitle">AI Fleet &amp; ELD Compliance <em class="serif-accent">Control Engine</em></p>
+  <div class="login-chip">
+    <span class="status-pulse-dot"></span> SPRINTFORGE VISUAL SYSTEM &bull; SHIP TIME READY
+  </div>
+</div>
 {% endblock %}

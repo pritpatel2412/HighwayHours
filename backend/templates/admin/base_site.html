@@ -11,12 +11,30 @@
 <link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom_admin.css' %}">
 {% endblock %}
 
+{% block bodyclass %}{{ block.super }} sprintforge-theme{% endblock %}
+
 {% block branding %}
-<h1 id="site-name">
-  <a href="{% url 'admin:index' %}">
-    <span>HighwayHours</span> <span class="accent-tag">ELD Administration</span>
+<!-- SprintForge Floating Glassmorphic Nav & Branding -->
+<div class="sprintforge-header-brand">
+  <a href="{% url 'admin:index' %}" class="sprintforge-logo-link">
+    <div class="logo-icon-box">🚛</div>
+    <div class="brand-titles">
+      <span class="brand-primary">Highway<span class="brand-orange">Hours</span></span>
+      <span class="brand-sub">SprintForge <em class="serif-accent">ELD Control</em></span>
+    </div>
   </a>
-</h1>
+  <div class="sprintforge-status-chip">
+    <span class="status-pulse-dot"></span>
+    <span class="status-chip-text">SHIP TIME &bull; ⚡ OPERATIONAL</span>
+  </div>
+</div>
 {% endblock %}
 
-{% block nav-global %}{% endblock %}
+{% block nav-global %}
+<!-- Ambient atmosphere background blooms -->
+<div class="sprintforge-atmosphere" aria-hidden="true">
+  <div class="bloom bloom-orange"></div>
+  <div class="bloom bloom-charcoal"></div>
+</div>
+{% endblock %}
+

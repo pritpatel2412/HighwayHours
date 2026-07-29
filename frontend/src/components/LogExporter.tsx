@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import html2canvas from 'html2canvas';
+import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';
 import { FileText, Image as ImageIcon, Loader2 } from 'lucide-react';
 
@@ -21,15 +21,12 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
 
     try {
       setIsExporting(true);
-      const canvas = await html2canvas(el, {
-        scale: 2,
+      const dataUrl = await toPng(el, {
         backgroundColor: '#ffffff',
-        useCORS: true,
-        logging: false,
-        windowWidth: 1280,
+        pixelRatio: 2,
+        cacheBust: true,
       });
 
-      const dataUrl = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       const cleanDate = dateStr.replace(/[^a-zA-Z0-9]/g, '_');
       link.download = `FMCSA_Daily_Log_Day_${dayNumber}_${cleanDate}.png`;
@@ -37,7 +34,7 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
       link.click();
     } catch (err) {
       console.error('Failed to export PNG:', err);
-      alert('Failed to export PNG image. Please try again.');
+      alert(`Failed to export PNG image: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setIsExporting(false);
     }
@@ -52,15 +49,19 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
 
     try {
       setIsExporting(true);
-      const canvas = await html2canvas(el, {
-        scale: 2,
+      const dataUrl = await toPng(el, {
         backgroundColor: '#ffffff',
-        useCORS: true,
-        logging: false,
-        windowWidth: 1280,
+        pixelRatio: 2,
+        cacheBust: true,
       });
 
-      const imgData = canvas.toDataURL('image/png');
+      // Load image to determine natural dimensions
+      const img = new Image();
+      img.src = dataUrl;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
 
       // Create standard landscape A4 PDF document (297mm width x 210mm height)
       const pdf = new jsPDF('landscape', 'mm', 'a4');
@@ -72,17 +73,17 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
       const maxImgHeight = pageHeight - margin * 2;
 
       let renderWidth = maxImgWidth;
-      let renderHeight = (canvas.height * renderWidth) / canvas.width;
+      let renderHeight = (img.height * renderWidth) / img.width;
 
       if (renderHeight > maxImgHeight) {
         renderHeight = maxImgHeight;
-        renderWidth = (canvas.width * renderHeight) / canvas.height;
+        renderWidth = (img.width * renderHeight) / img.height;
       }
 
       const posX = (pageWidth - renderWidth) / 2;
       const posY = (pageHeight - renderHeight) / 2;
 
-      pdf.addImage(imgData, 'PNG', posX, posY, renderWidth, renderHeight);
+      pdf.addImage(dataUrl, 'PNG', posX, posY, renderWidth, renderHeight);
 
       const cleanDate = dateStr.replace(/[^a-zA-Z0-9]/g, '_');
       pdf.save(`FMCSA_Daily_Log_Day_${dayNumber}_${cleanDate}.pdf`);
