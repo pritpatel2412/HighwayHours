@@ -14,7 +14,10 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
 
   const exportPNG = async () => {
     const el = document.getElementById(logElementId);
-    if (!el) return;
+    if (!el) {
+      alert('Log sheet element not found for export.');
+      return;
+    }
 
     try {
       setIsExporting(true);
@@ -22,11 +25,14 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
         scale: 2,
         backgroundColor: '#ffffff',
         useCORS: true,
+        logging: false,
+        windowWidth: 1280,
       });
 
       const dataUrl = canvas.toDataURL('image/png');
       const link = document.createElement('a');
-      link.download = `FMCSA_Daily_Log_Day_${dayNumber}_${dateStr.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
+      const cleanDate = dateStr.replace(/[^a-zA-Z0-9]/g, '_');
+      link.download = `FMCSA_Daily_Log_Day_${dayNumber}_${cleanDate}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -39,7 +45,10 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
 
   const exportPDF = async () => {
     const el = document.getElementById(logElementId);
-    if (!el) return;
+    if (!el) {
+      alert('Log sheet element not found for export.');
+      return;
+    }
 
     try {
       setIsExporting(true);
@@ -47,20 +56,39 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
         scale: 2,
         backgroundColor: '#ffffff',
         useCORS: true,
+        logging: false,
+        windowWidth: 1280,
       });
 
       const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
-        format: [canvas.width, canvas.height],
-      });
 
-      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-      pdf.save(`FMCSA_Daily_Log_Day_${dayNumber}_${dateStr.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`);
+      // Create standard landscape A4 PDF document (297mm width x 210mm height)
+      const pdf = new jsPDF('landscape', 'mm', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth(); // 297 mm
+      const pageHeight = pdf.internal.pageSize.getHeight(); // 210 mm
+
+      const margin = 10; // 10mm margin around page
+      const maxImgWidth = pageWidth - margin * 2;
+      const maxImgHeight = pageHeight - margin * 2;
+
+      let renderWidth = maxImgWidth;
+      let renderHeight = (canvas.height * renderWidth) / canvas.width;
+
+      if (renderHeight > maxImgHeight) {
+        renderHeight = maxImgHeight;
+        renderWidth = (canvas.width * renderHeight) / canvas.height;
+      }
+
+      const posX = (pageWidth - renderWidth) / 2;
+      const posY = (pageHeight - renderHeight) / 2;
+
+      pdf.addImage(imgData, 'PNG', posX, posY, renderWidth, renderHeight);
+
+      const cleanDate = dateStr.replace(/[^a-zA-Z0-9]/g, '_');
+      pdf.save(`FMCSA_Daily_Log_Day_${dayNumber}_${cleanDate}.pdf`);
     } catch (err) {
       console.error('Failed to export PDF:', err);
-      alert('Failed to export PDF file. Please try again.');
+      alert(`Failed to export PDF file: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setIsExporting(false);
     }
@@ -90,4 +118,3 @@ export const LogExporter: React.FC<LogExporterProps> = ({ logElementId, dayNumbe
     </div>
   );
 };
-
