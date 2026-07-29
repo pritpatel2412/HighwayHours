@@ -410,17 +410,18 @@ div.breadcrumbs a:hover {
 .sprintforge-hero-shell {
   background: var(--brand-black);
   color: #FFFFFF;
-  border-radius: 40px;
+  border-radius: 32px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 50px -12px rgba(23, 23, 25, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  padding: 40px 48px;
-  margin-bottom: 40px;
+  box-shadow: 0 20px 40px -12px rgba(23, 23, 25, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  padding: 36px 40px;
+  margin-bottom: 32px;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px;
+  gap: 40px;
   align-items: center;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .sprintforge-hero-shell::after {
@@ -456,20 +457,20 @@ div.breadcrumbs a:hover {
 }
 
 .hero-display-heading {
-  font-size: 2.6rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.035em;
-  margin: 0 0 16px 0;
+  margin: 0 0 14px 0;
   color: #FFFFFF;
 }
 
 .hero-body-desc {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.625;
   color: #8a8c91;
-  margin: 0 0 32px 0;
-  max-width: 580px;
+  margin: 0 0 28px 0;
+  max-width: 520px;
 }
 
 .hero-metrics-grid {
@@ -703,13 +704,14 @@ div.breadcrumbs a:hover {
    -------------------------------------------------------------------------- */
 .sprintforge-feature-tile.module {
   background: #FFFFFF !important;
-  border-radius: 28px !important;
+  border-radius: 24px !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 14px 30px -18px rgba(35, 36, 39, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-  margin-bottom: 28px !important;
+  box-shadow: 0 8px 24px -12px rgba(35, 36, 39, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 20px !important;
   overflow: hidden !important;
-  padding: 28px !important;
+  padding: 24px !important;
   transition: box-shadow 300ms ease;
+  box-sizing: border-box !important;
 }
 
 .sprintforge-feature-tile.module:hover {
@@ -718,10 +720,10 @@ div.breadcrumbs a:hover {
 
 .tile-header-bar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -734,14 +736,27 @@ div.breadcrumbs a:hover {
 .tile-square-icon {
   width: 48px;
   height: 48px;
+  min-width: 48px;
   border-radius: 16px;
   background: var(--bg-secondary);
   border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.tile-square-icon svg {
+  flex-shrink: 0;
+}
+
+.section-icon {
+  flex-shrink: 0;
+  color: var(--brand-orange);
+}
+
+.card-title-icon {
+  flex-shrink: 0;
 }
 
 .tile-meta-text {
@@ -925,15 +940,27 @@ div.breadcrumbs a:hover {
   transform: translateX(4px);
 }
 
-.action-icon {
-  font-size: 1.15rem;
-  margin-top: 2px;
+.action-icon-svg {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
+
+.action-item.add .action-icon-svg { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.15); }
+.action-item.change .action-icon-svg { background: rgba(217, 119, 6, 0.08); border-color: rgba(217, 119, 6, 0.15); }
+.action-item.delete .action-icon-svg { background: rgba(220, 38, 38, 0.08); border-color: rgba(220, 38, 38, 0.15); }
 
 .action-details {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-width: 0;
 }
 
 .action-title {
@@ -1043,6 +1070,10 @@ div.breadcrumbs a:hover {
   gap: 10px;
 }
 
+.feature-check-icon {
+  flex-shrink: 0;
+}
+
 .checkmark {
   color: var(--brand-orange);
   font-weight: 700;
@@ -1060,6 +1091,9 @@ div.breadcrumbs a:hover {
   font-weight: 700;
   color: #FFFFFF;
   letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* --------------------------------------------------------------------------
@@ -1577,4 +1611,169 @@ body.login input[type="submit"]:hover {
     padding: 20px !important;
     border-radius: 20px !important;
   }
+}
+
+/* --------------------------------------------------------------------------
+   Change Form Styling (Add/Edit Pages)
+   -------------------------------------------------------------------------- */
+fieldset.module {
+  background: #FFFFFF !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 8px 24px -12px rgba(35, 36, 39, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 20px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+fieldset.module h2, fieldset.module .module-header {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 14px 24px !important;
+  margin: 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+fieldset.module .form-row {
+  padding: 14px 24px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+fieldset.module .form-row:last-child {
+  border-bottom: none !important;
+}
+
+fieldset.module .form-row label {
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  color: var(--text-primary) !important;
+}
+
+fieldset.module .form-row .help {
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+}
+
+/* Input fields within forms */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+  font-family: var(--font-sans) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 10px 14px !important;
+  font-size: 0.9rem !important;
+  color: var(--text-primary) !important;
+  background: var(--bg-secondary) !important;
+  transition: all 200ms ease !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  background: #FFFFFF !important;
+  border-color: var(--brand-orange) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(227, 74, 50, 0.12) !important;
+}
+
+/* Django colMS layout fix (two-column with sidebar) */
+.colMS {
+  display: flex !important;
+  gap: 32px !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+}
+
+.colMS #content-main {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.colMS #content-related {
+  width: 280px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Inline admin and related elements */
+.inline-group, .inline-related {
+  background: #FFFFFF !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 8px 24px -12px rgba(35, 36, 39, 0.12) !important;
+  margin-bottom: 20px !important;
+  overflow: hidden !important;
+}
+
+/* Empty state text */
+.empty-log {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Pagination */
+.paginator {
+  background: #FFFFFF !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  padding: 12px 20px !important;
+  margin-top: 16px !important;
+  font-size: 0.85rem !important;
+}
+
+/* Messages / Alerts */
+.messagelist {
+  max-width: 1400px !important;
+  width: calc(100% - 48px) !important;
+  margin: 0 auto 16px auto !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.messagelist li {
+  padding: 12px 20px !important;
+  border-radius: 14px !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 8px !important;
+}
+
+.messagelist li.success {
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #065F46 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+}
+
+.messagelist li.warning {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: #92400E !important;
+  border: 1px solid rgba(245, 158, 11, 0.2) !important;
+}
+
+.messagelist li.error {
+  background: rgba(220, 38, 38, 0.08) !important;
+  color: #991B1B !important;
+  border: 1px solid rgba(220, 38, 38, 0.2) !important;
+}
+
+/* Dark mode toggle hide */
+#toggle-theme {
+  display: none !important;
 }

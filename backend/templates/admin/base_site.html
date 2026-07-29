@@ -14,10 +14,11 @@
 {% block bodyclass %}{{ block.super }} sprintforge-theme{% endblock %}
 
 {% block branding %}
-<!-- SprintForge Floating Glassmorphic Nav & Branding -->
 <div class="sprintforge-header-brand">
   <a href="{% url 'admin:index' %}" class="sprintforge-logo-link">
-    <div class="logo-icon-box">🚛</div>
+    <div class="logo-icon-box">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E34A32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
     <div class="brand-titles">
       <span class="brand-primary">Highway<span class="brand-orange">Hours</span></span>
       <span class="brand-sub">SprintForge <em class="serif-accent">ELD Control</em></span>
@@ -25,16 +26,14 @@
   </a>
   <div class="sprintforge-status-chip">
     <span class="status-pulse-dot"></span>
-    <span class="status-chip-text">SHIP TIME &bull; ⚡ OPERATIONAL</span>
+    <span class="status-chip-text">OPERATIONAL</span>
   </div>
 </div>
 {% endblock %}
 
 {% block nav-global %}
-<!-- Ambient atmosphere background blooms -->
 <div class="sprintforge-atmosphere" aria-hidden="true">
   <div class="bloom bloom-orange"></div>
   <div class="bloom bloom-charcoal"></div>
 </div>
 {% endblock %}
-
