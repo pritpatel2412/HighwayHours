@@ -313,75 +313,73 @@ body {
 }
 
 #user-tools {
-  font-size: 0.85rem !important;
+  font-size: 0.78rem !important;
   font-weight: 600 !important;
   color: #8a8c91 !important;
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 16px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
 }
 
 #user-tools a {
-  color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  padding: 8px 16px !important;
-  border-radius: 999px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  background: transparent !important;
+  padding: 4px 6px !important;
   text-decoration: none !important;
-  font-size: 0.8rem !important;
+  font-size: 0.78rem !important;
   font-weight: 600 !important;
-  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: color 150ms ease !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 #user-tools a:hover {
-  background: #E34A32 !important;
-  color: #FFFFFF !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px -6px rgba(227, 74, 50, 0.6) !important;
-  border-color: #E34A32 !important;
+  background: transparent !important;
+  color: var(--brand-orange) !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 #user-tools a[href*="logout"] {
-  background: rgba(227, 74, 50, 0.2) !important;
-  color: #F05A3C !important;
-  border: 1px solid rgba(227, 74, 50, 0.4) !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  border: none !important;
 }
 
 #user-tools a[href*="logout"]:hover {
-  background: #E34A32 !important;
-  color: #FFFFFF !important;
+  background: transparent !important;
+  color: #DC2626 !important;
 }
 
 /* --------------------------------------------------------------------------
    Breadcrumbs
    -------------------------------------------------------------------------- */
 div.breadcrumbs {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  color: #55575c !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
   max-width: 1400px !important;
   width: calc(100% - 48px) !important;
-  margin: 12px auto 16px auto !important;
-  padding: 10px 20px !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 4px 12px -6px rgba(35, 36, 39, 0.08) !important;
+  margin: 16px auto 8px auto !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
   font-size: 0.85rem !important;
   font-weight: 500 !important;
   box-sizing: border-box !important;
 }
 
 div.breadcrumbs a {
-  color: var(--brand-orange) !important;
-  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+  font-weight: 500 !important;
   text-decoration: none !important;
   transition: all 200ms ease !important;
 }
 
 div.breadcrumbs a:hover {
-  color: var(--brand-orange-light) !important;
+  color: var(--brand-orange) !important;
   text-decoration: underline !important;
 }
 
@@ -1100,35 +1098,57 @@ div.breadcrumbs a:hover {
    Data Tables & Change Lists (#changelist, #toolbar, Filters)
    -------------------------------------------------------------------------- */
 #changelist {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 32px !important;
+  align-items: start !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 
+#changelist:has(#changelist-filter) {
+  grid-template-columns: minmax(0, 1fr) 280px !important;
+}
+
+#changelist-form {
+  grid-column: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  min-width: 0 !important;
+}
+
 #toolbar {
   background: #FFFFFF !important;
-  border-radius: 24px !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 10px 25px -14px rgba(35, 36, 39, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-  padding: 18px 24px !important;
-  margin-bottom: 24px !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 16px -8px rgba(35, 36, 39, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  padding: 16px 20px !important;
+  margin-bottom: 0 !important;
+}
+
+#toolbar form {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
 #toolbar form input[type="text"] {
   background: var(--bg-secondary) !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  border-radius: 999px !important;
-  padding: 10px 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: 12px !important;
+  padding: 10px 16px !important;
   font-size: 0.9rem !important;
   color: var(--text-primary) !important;
-  width: 320px !important;
+  width: 280px !important;
   transition: all 200ms ease !important;
 }
 
 #toolbar form input[type="text"]:focus {
   background: #FFFFFF !important;
   border-color: var(--brand-orange) !important;
-  box-shadow: 0 0 0 4px rgba(227, 74, 50, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(227, 74, 50, 0.12) !important;
   outline: none !important;
 }
 
@@ -1141,22 +1161,22 @@ div.breadcrumbs a:hover {
   font-size: 0.85rem !important;
   border: none !important;
   cursor: pointer !important;
-  box-shadow: 0 8px 18px -6px rgba(23, 23, 25, 0.45) !important;
-  transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-  margin-left: 10px !important;
+  box-shadow: 0 6px 12px -4px rgba(23, 23, 25, 0.3) !important;
+  transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  margin-left: 0 !important;
 }
 
 #toolbar form input[type="submit"]:hover {
   background: var(--brand-orange) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 14px 25px -8px rgba(227, 74, 50, 0.6) !important;
+  box-shadow: 0 8px 16px -4px rgba(227, 74, 50, 0.4) !important;
 }
 
 .results {
   background: #FFFFFF !important;
-  border-radius: 28px !important;
+  border-radius: 24px !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 14px 30px -18px rgba(35, 36, 39, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 8px 24px -12px rgba(35, 36, 39, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   overflow: hidden !important;
 }
 
@@ -1173,8 +1193,8 @@ div.breadcrumbs a:hover {
   font-size: 0.75rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.06em !important;
-  padding: 16px 20px !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  padding: 14px 20px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 
 #result_list th a {
@@ -1195,15 +1215,15 @@ div.breadcrumbs a:hover {
 
 #result_list tr {
   background: #FFFFFF !important;
-  transition: background-color 200ms ease !important;
+  transition: background-color 150ms ease !important;
 }
 
 #result_list tr:hover {
-  background-color: rgba(227, 74, 50, 0.04) !important;
+  background-color: rgba(227, 74, 50, 0.03) !important;
 }
 
 #result_list tr.selected {
-  background-color: rgba(227, 74, 50, 0.08) !important;
+  background-color: rgba(227, 74, 50, 0.06) !important;
 }
 
 #result_list td a:link, #result_list td a:visited {
@@ -1223,26 +1243,31 @@ div.breadcrumbs a:hover {
 .actions {
   background: #FFFFFF !important;
   border-radius: 20px !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
   padding: 14px 20px !important;
-  margin-bottom: 20px !important;
-  box-shadow: 0 8px 20px -14px rgba(35, 36, 39, 0.12) !important;
+  margin-bottom: 0 !important;
+  box-shadow: 0 4px 16px -8px rgba(35, 36, 39, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
 .actions label {
   font-weight: 600 !important;
-  font-size: 0.88rem !important;
+  font-size: 0.82rem !important;
   color: var(--text-secondary) !important;
+  display: inline-flex !important;
+  align-items: center !important;
 }
 
 .actions select {
   background: var(--bg-secondary) !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  border-radius: 12px !important;
-  padding: 8px 16px !important;
-  font-size: 0.88rem !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: 10px !important;
+  padding: 8px 14px !important;
+  font-size: 0.85rem !important;
   color: var(--text-primary) !important;
-  margin: 0 10px !important;
+  margin: 0 !important;
 }
 
 .actions button.button, .actions input[type="submit"] {
@@ -1254,7 +1279,7 @@ div.breadcrumbs a:hover {
   font-size: 0.82rem !important;
   border: none !important;
   cursor: pointer !important;
-  transition: all 200ms ease !important;
+  transition: all 150ms ease !important;
 }
 
 .actions button.button:hover, .actions input[type="submit"]:hover {
@@ -1262,66 +1287,108 @@ div.breadcrumbs a:hover {
 }
 
 #changelist-filter {
+  grid-column: 2 !important;
+  position: sticky !important;
+  top: 100px !important;
+  width: 100% !important;
+  margin: 0 !important;
   background: #FFFFFF !important;
-  border-radius: 28px !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 14px 30px -18px rgba(35, 36, 39, 0.18) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 8px 24px -12px rgba(35, 36, 39, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   padding: 0 !important;
   overflow: hidden !important;
+  box-sizing: border-box !important;
 }
 
 #changelist-filter h2 {
   background: var(--brand-black) !important;
   color: #FFFFFF !important;
-  font-size: 0.82rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-  padding: 16px 20px !important;
-  margin: 0 !important;
-}
-
-#changelist-filter h3 {
-  color: var(--brand-orange) !important;
   font-size: 0.8rem !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
-  padding: 16px 20px 6px 20px !important;
+  letter-spacing: 0.08em !important;
+  padding: 14px 20px !important;
+  margin: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+#changelist-filter h3 {
+  color: var(--text-primary) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 16px 20px 8px 20px !important;
   margin: 0 !important;
 }
 
 #changelist-filter ul {
-  padding: 0 20px 16px 20px !important;
+  padding: 0 20px 14px 20px !important;
   margin: 0 !important;
   list-style: none !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+#changelist-filter ul:last-of-type {
+  border-bottom: none !important;
 }
 
 #changelist-filter li {
-  padding: 5px 0 !important;
-  font-size: 0.88rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-block !important;
 }
 
-#changelist-filter li.selected a {
-  color: var(--brand-orange) !important;
-  font-weight: 700 !important;
+#changelist-filter li.selected {
+  border-left: none !important;
+  padding-left: 0 !important;
 }
 
 #changelist-filter a {
+  display: inline-block !important;
+  padding: 6px 12px !important;
+  border-radius: 20px !important;
+  background: var(--bg-secondary) !important;
   color: var(--text-secondary) !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
   text-decoration: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  transition: all 150ms ease !important;
 }
 
 #changelist-filter a:hover {
-  color: var(--brand-orange) !important;
+  background: var(--brand-black) !important;
+  color: #FFFFFF !important;
+  border-color: var(--brand-black) !important;
+}
+
+#changelist-filter li.selected a {
+  background: var(--brand-orange) !important;
+  color: #FFFFFF !important;
+  border-color: var(--brand-orange) !important;
+  font-weight: 600 !important;
 }
 
 /* --------------------------------------------------------------------------
    Buttons & Object Tools (Add User, Save, Delete)
    -------------------------------------------------------------------------- */
+#content {
+  position: relative !important;
+}
+
 .object-tools {
-  margin-bottom: 20px !important;
+  position: absolute !important;
+  top: 14px !important;
+  right: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  z-index: 100 !important;
 }
 
 .object-tools a, a.addlink, .addlink {
@@ -1334,8 +1401,8 @@ div.breadcrumbs a:hover {
   padding: 10px 24px !important;
   border-radius: 999px !important;
   text-decoration: none !important;
-  box-shadow: 0 14px 28px -10px rgba(227, 74, 50, 0.5) !important;
-  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  box-shadow: 0 10px 20px -8px rgba(227, 74, 50, 0.5) !important;
+  transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
   border: none !important;
   display: inline-block !important;
 }
@@ -1343,7 +1410,7 @@ div.breadcrumbs a:hover {
 .object-tools a:hover, a.addlink:hover {
   background: var(--brand-orange-light) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 18px 34px -8px rgba(227, 74, 50, 0.65) !important;
+  box-shadow: 0 14px 28px -6px rgba(227, 74, 50, 0.6) !important;
   color: #FFFFFF !important;
 }
 
