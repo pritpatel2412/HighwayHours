@@ -5,13 +5,16 @@
 
 {% block extrahead %}
 {{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom_admin.css' %}">
 {% endblock %}
 
 {% block branding %}
 <h1 id="site-name">
   <a href="{% url 'admin:index' %}">
-    <span>HighwayHours</span> <small style="font-size: 0.7em; font-weight: normal; opacity: 0.8; margin-left: 6px;">ELD Administration</small>
+    <span>HighwayHours</span> <span class="accent-tag">ELD Administration</span>
   </a>
 </h1>
 {% endblock %}
