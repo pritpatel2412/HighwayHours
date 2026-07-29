@@ -117,12 +117,12 @@ REST_FRAMEWORK = {
     ],
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     origin.strip()
-    for origin in os.environ.get("CORS_ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+    for origin in os.environ.get("CORS_ALLOWED_ORIGINS", "http://localhost:5173,https://highway-hours.vercel.app").split(",")
     if origin.strip()
 ]
-
 CORS_ALLOW_CREDENTIALS = True
 
 NOMINATIM_USER_AGENT = os.environ.get(
