@@ -1,0 +1,249 @@
+/* ==========================================================================
+   HighwayHours Custom Django Admin Theme
+   Matches Frontend Palette: Brand Black (#171719), Brand Orange (#E34A32),
+   Surface (#FFFFFF), Background (#ECEDEE), Typography (Inter)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-bg-primary: #ECEDEE;
+  --color-bg-secondary: #F4F5F5;
+  --color-brand-black: #171719;
+  --color-brand-orange: #E34A32;
+  --color-brand-orange-hover: #F05A3C;
+  --color-text-primary: #232427;
+  --color-text-muted: #6b7280;
+  --color-card-bg: #FFFFFF;
+  --color-border: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: var(--font-family) !important;
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Header Bar
+   -------------------------------------------------------------------------- */
+#header {
+  background: var(--color-brand-black) !important;
+  color: #FFFFFF !important;
+  padding: 14px 24px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+#header a:link, #header a:visited {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+}
+
+#site-name a {
+  font-weight: 700 !important;
+  font-size: 1.25rem !important;
+  letter-spacing: -0.02em !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#site-name a::before {
+  content: "🚛";
+  font-size: 1.3rem;
+}
+
+#user-tools {
+  font-weight: 500 !important;
+}
+
+#user-tools a {
+  color: var(--color-brand-orange) !important;
+  font-weight: 600 !important;
+}
+
+#user-tools a:hover {
+  color: var(--color-brand-orange-hover) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumbs & Navigation
+   -------------------------------------------------------------------------- */
+div.breadcrumbs {
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-muted) !important;
+  padding: 10px 24px !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+}
+
+div.breadcrumbs a {
+  color: var(--color-brand-orange) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Login Page Styling
+   -------------------------------------------------------------------------- */
+body.login {
+  background: linear-gradient(135deg, #171719 0%, #232427 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+}
+
+body.login #container {
+  background: var(--color-card-bg) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+body.login #header {
+  background: var(--color-brand-black) !important;
+  text-align: center !important;
+  padding: 24px !important;
+  border-bottom: 3px solid var(--color-brand-orange) !important;
+}
+
+body.login #site-name a {
+  justify-content: center !important;
+  font-size: 1.4rem !important;
+}
+
+body.login #content {
+  padding: 32px 28px !important;
+}
+
+body.login .form-row {
+  border-bottom: none !important;
+  padding: 8px 0 !important;
+}
+
+body.login label {
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  color: var(--color-text-primary) !important;
+  display: block !important;
+  margin-bottom: 6px !important;
+}
+
+body.login input[type="text"],
+body.login input[type="password"] {
+  width: 100% !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid #D1D5DB !important;
+  box-sizing: border-box !important;
+  font-size: 0.95rem !important;
+  transition: all 0.2s ease !important;
+}
+
+body.login input[type="text"]:focus,
+body.login input[type="password"]:focus {
+  border-color: var(--color-brand-orange) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(227, 74, 50, 0.2) !important;
+}
+
+body.login .submit-row {
+  margin-top: 20px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+body.login input[type="submit"] {
+  width: 100% !important;
+  background-color: var(--color-brand-orange) !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  padding: 12px 20px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(227, 74, 50, 0.4) !important;
+}
+
+body.login input[type="submit"]:hover {
+  background-color: var(--color-brand-orange-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(227, 74, 50, 0.5) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Modules & Tables
+   -------------------------------------------------------------------------- */
+.module {
+  background: var(--color-card-bg) !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  margin-bottom: 24px !important;
+  overflow: hidden !important;
+}
+
+.module h2, .module caption, .inline-group h2 {
+  background: var(--color-brand-black) !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 10px 16px !important;
+}
+
+table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+th {
+  background: #F9FAFB !important;
+  color: var(--color-text-muted) !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+td, th {
+  padding: 10px 16px !important;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & Links
+   -------------------------------------------------------------------------- */
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+  background: var(--color-brand-black) !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  border: none !important;
+
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+  background: var(--color-brand-orange) !important;
+}
+
+.button.default:hover, input[type=submit].default:hover {
+  background: var(--color-brand-orange-hover) !important;
+}
+
+a:link, a:visited {
+  color: var(--color-brand-orange) !important;
+}
+
+a:hover {
+  color: var(--color-brand-orange-hover) !important;
+}
