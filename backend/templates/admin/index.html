@@ -9,125 +9,99 @@
 {% block content %}
 <div id="content-main" class="sprintforge-dashboard-main">
   
-  <!-- HERO COMMAND SECTION -->
-  <section class="sprintforge-hero-shell rise-in-animate">
-    <div class="hero-left-column">
-      <div class="hero-chip-pill">
-        <span class="status-pulse-dot"></span>
-        <span class="chip-label">HIGHWAYHOURS CONTROL TERMINAL</span>
+  <!-- EXECUTIVE OVERVIEW & METRICS BAR -->
+  <header class="dashboard-header-bar">
+    <div class="dashboard-title-group">
+      <h1 class="dashboard-page-title">System Control &amp; Modules</h1>
+      <p class="dashboard-page-subtitle">Centralized administrative management for driver logs, compliance records, and database entities.</p>
+    </div>
+    <div class="dashboard-env-badge">
+      <span class="status-indicator-dot active"></span>
+      <span>Environment: <strong>Production</strong> &bull; DB Sync Active</span>
+    </div>
+  </header>
+
+  <!-- 4-COLUMN KPI DATA STRIP -->
+  <section class="kpi-metric-strip">
+    <div class="kpi-card">
+      <span class="kpi-label">DATABASE ENGINE</span>
+      <div class="kpi-value-row">
+        <span class="kpi-num">PostgreSQL Online</span>
+        <svg class="kpi-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
       </div>
-      <h1 class="hero-display-heading">
-        High-Performance <span class="serif-italic">ELD &amp; Fleet Pipeline</span> Engine
-      </h1>
-      <p class="hero-body-desc">
-        Monitor real-time driver telemetry, manage compliance records, and orchestrate automated FMCSA log generation with zero-friction clinical efficiency.
-      </p>
-      
-      <div class="hero-metrics-grid">
-        <div class="metric-card hover-lift">
-          <span class="metric-ui-label">HOS ENGINE</span>
-          <div class="metric-value-row">
-            <span class="status-indicator active"></span>
-            <span class="metric-num text-orange">FMCSA Ready</span>
-          </div>
-          <span class="metric-sub">Automated 24h cycle sync</span>
-        </div>
-        
-        <div class="metric-card hover-lift">
-          <span class="metric-ui-label">DISPATCH</span>
-          <div class="metric-value-row">
-            <span class="metric-num">Live Map Sync</span>
-          </div>
-          <span class="metric-sub">OpenStreetMap &amp; Leaflet</span>
-        </div>
-        
-        <div class="metric-card hover-lift">
-          <span class="metric-ui-label">CLOUD</span>
-          <div class="metric-value-row">
-            <span class="metric-num">Render + Vercel</span>
-          </div>
-          <span class="metric-sub">Continuous Deployment</span>
-        </div>
-      </div>
+      <span class="kpi-subtext">Neon Cloud replication active</span>
     </div>
 
-    <!-- GHOST PREVIEW UI MODULE -->
-    <div class="hero-ghost-column drift-animate" aria-hidden="true">
-      <div class="ghost-ui-shell">
-        <div class="ghost-topbar">
-          <div class="ghost-dots">
-            <span class="g-dot r"></span><span class="g-dot y"></span><span class="g-dot g"></span>
-          </div>
-          <span class="ghost-title">HOS_GRID_V1.0</span>
-          <span class="ghost-badge">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            LIVE
-          </span>
-        </div>
-        <div class="ghost-canvas">
-          <div class="ghost-track-line">
-            <div class="ghost-segment off-duty" style="width: 20%;" title="Off Duty"></div>
-            <div class="ghost-segment sleeper" style="width: 15%;" title="Sleeper Berth"></div>
-            <div class="ghost-segment driving active" style="width: 50%;" title="Driving (Active)">
-              <span class="ghost-glow"></span>
-            </div>
-            <div class="ghost-segment on-duty" style="width: 15%;" title="On Duty (Not Driving)"></div>
-          </div>
-          <div class="ghost-labels">
-            <span>M</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>N</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>M</span>
-          </div>
-          <div class="ghost-stats-row">
-            <div class="ghost-stat-box"><span class="stat-lbl">DRIVE TIME</span><span class="stat-val text-orange">09h 45m</span></div>
-            <div class="ghost-stat-box"><span class="stat-lbl">SHIFT REMAIN</span><span class="stat-val">04h 15m</span></div>
-            <div class="ghost-stat-box"><span class="stat-lbl">VIOLATIONS</span><span class="stat-val clean">NONE (0)</span></div>
-          </div>
-        </div>
+    <div class="kpi-card">
+      <span class="kpi-label">HOS COMPLIANCE</span>
+      <div class="kpi-value-row">
+        <span class="kpi-num">70hr / 8-Day Rule</span>
+        <svg class="kpi-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
+      <span class="kpi-subtext">Title 49 CFR Part 395 verification</span>
+    </div>
+
+    <div class="kpi-card">
+      <span class="kpi-label">DISPATCH TELEMETRY</span>
+      <div class="kpi-value-row">
+        <span class="kpi-num">Leaflet &amp; OSM Sync</span>
+        <svg class="kpi-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+      </div>
+      <span class="kpi-subtext">Real-time GPS polyline streaming</span>
+    </div>
+
+    <div class="kpi-card">
+      <span class="kpi-label">SECURITY &amp; RBAC</span>
+      <div class="kpi-value-row">
+        <span class="kpi-num">IAM Protected</span>
+        <svg class="kpi-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span class="kpi-subtext">Zero-trust session integrity</span>
     </div>
   </section>
 
-  <!-- APPLICATION MODULES & RECENT ACTIONS -->
-  <div class="sprintforge-grid-columns">
+  <!-- APPLICATION MODULES & SYSTEM TELEMETRY -->
+  <div class="dashboard-main-grid">
     <!-- Left Column: App Models -->
     <div class="app-modules-column">
-      <h2 class="section-ui-heading">
-        <svg class="section-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        DATABASE &amp; FLEET MODULES
+      <h2 class="grid-column-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        Database Entities &amp; Modules
       </h2>
 
       {% if app_list %}
         {% for app in app_list %}
-          <div class="sprintforge-feature-tile module">
-            <div class="tile-header-bar">
-              <div class="tile-title-wrap">
-                <div class="tile-square-icon">
+          <div class="module-card">
+            <div class="module-card-header">
+              <div class="module-header-info">
+                <div class="module-icon">
                   {% if app.app_label == 'trips' %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
                   {% elif app.app_label == 'auth' %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
                   {% else %}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                   {% endif %}
                 </div>
-                <div class="tile-meta-text">
-                  <h3 class="tile-app-name"><a href="{{ app.app_url }}">{{ app.name }}</a></h3>
-                  <span class="tile-caption">{% if app.app_label == 'trips' %}Driver logs, trip routes &amp; ELD telemetry records{% elif app.app_label == 'auth' %}User access control, permissions &amp; organization security{% else %}System data administration and application configuration{% endif %}</span>
+                <div class="module-header-titles">
+                  <h3 class="module-title"><a href="{{ app.app_url }}">{{ app.name }}</a></h3>
+                  <p class="module-desc">{% if app.app_label == 'trips' %}Driver logs, trip routes &amp; ELD telemetry records{% elif app.app_label == 'auth' %}User access control, permissions &amp; organization security{% else %}System data administration and application configuration{% endif %}</p>
                 </div>
               </div>
             </div>
 
-            <table class="sprintforge-models-table">
+            <table class="module-models-table">
               {% for model in app.models %}
-                <tr class="model-row">
-                  <th scope="row" class="model-name-cell">
-                    <a href="{{ model.admin_url }}" class="model-link">{{ model.name }}</a>
-                  </th>
-                  <td class="model-actions-cell">
+                <tr class="model-item-row">
+                  <td class="model-item-name">
+                    <a href="{{ model.admin_url }}" class="model-item-link">{{ model.name }}</a>
+                  </td>
+                  <td class="model-item-actions">
                     {% if model.add_url %}
-                      <a href="{{ model.add_url }}" class="pill-btn add-btn">+ Add new</a>
+                      <a href="{{ model.add_url }}" class="action-btn-subtle add">+ Add</a>
                     {% endif %}
                     {% if model.admin_url %}
-                      <a href="{{ model.admin_url }}" class="pill-btn view-btn">Manage &rarr;</a>
+                      <a href="{{ model.admin_url }}" class="action-btn-subtle view">View list &rarr;</a>
                     {% endif %}
                   </td>
                 </tr>
@@ -136,7 +110,7 @@
           </div>
         {% endfor %}
       {% else %}
-        <div class="sprintforge-empty-card">
+        <div class="module-card-empty">
           <p>{% translate 'No administrative modules available for your user profile.' %}</p>
         </div>
       {% endif %}
@@ -144,42 +118,43 @@
 
     <!-- Right Column: Recent Activity Log & System Health -->
     <div class="sidebar-modules-column">
-      <div class="sprintforge-card-surface recent-actions-card">
-        <div class="card-title-bar">
-          <div class="card-title-left">
-            <svg class="card-title-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <span class="ui-label">RECENT ACTIONS</span>
+      <!-- Recent Actions Log -->
+      <div class="sidebar-panel">
+        <div class="sidebar-panel-header">
+          <div class="panel-header-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>Recent System Actions</span>
           </div>
-          <span class="pill-tag">LOG FEED</span>
+          <span class="panel-badge">Live Feed</span>
         </div>
-        <div class="recent-actions-content">
+        <div class="sidebar-panel-body">
           {% get_admin_log 8 as admin_log %}
           {% if not admin_log %}
-            <p class="empty-log">No recent audit log entries.</p>
+            <p class="empty-log-text">No recent system audit events recorded.</p>
           {% else %}
-            <ul class="action-list">
+            <ul class="audit-log-list">
               {% for entry in admin_log %}
-                <li class="action-item {% if entry.is_addition %}add{% elif entry.is_change %}change{% elif entry.is_deletion %}delete{% endif %}">
-                  <span class="action-icon-svg">
+                <li class="audit-log-item {% if entry.is_addition %}add{% elif entry.is_change %}change{% elif entry.is_deletion %}delete{% endif %}">
+                  <span class="audit-badge">
                     {% if entry.is_addition %}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     {% elif entry.is_change %}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                     {% elif entry.is_deletion %}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
                     {% else %}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                     {% endif %}
                   </span>
-                  <div class="action-details">
-                    <span class="action-title">
+                  <div class="audit-content">
+                    <span class="audit-object">
                       {% if entry.is_deletion or not entry.get_admin_url %}
                         {{ entry.object_repr }}
                       {% else %}
                         <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
                       {% endif %}
                     </span>
-                    <span class="action-meta">{{ entry.content_type }} &bull; {{ entry.action_time|timesince }} ago</span>
+                    <span class="audit-meta">{{ entry.content_type }} &bull; {{ entry.action_time|timesince }} ago</span>
                   </div>
                 </li>
               {% endfor %}
@@ -188,39 +163,41 @@
         </div>
       </div>
 
-      <!-- System Info Card -->
-      <div class="sprintforge-card-surface package-highlight-card">
-        <div class="package-header">
-          <span class="package-tag">SYSTEM</span>
-          <span class="package-ver">v1.0.0</span>
+      <!-- ELD System Telemetry Card (Technical readouts replacing sales pricing cards) -->
+      <div class="sidebar-panel technical-readout-panel">
+        <div class="sidebar-panel-header">
+          <div class="panel-header-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span>ELD Engine Diagnostic Monitor</span>
+          </div>
+          <span class="status-badge-active">Online</span>
         </div>
-        <h4 class="package-name">Enterprise Fleet <em class="serif-accent">&amp; Telemetry</em></h4>
-        <div class="package-status-row">
-          <span class="status-pulse-dot"></span> All ELD Compliance Engines Online
+        <div class="technical-readout-body">
+          <ul class="telemetry-param-list">
+            <li class="param-row">
+              <span class="param-name">HOS Rule Standard</span>
+              <span class="param-value text-orange">Title 49 CFR Part 395</span>
+            </li>
+            <li class="param-row">
+              <span class="param-name">Rest Break Enforcement</span>
+              <span class="param-value">30-Min Auto-calculation</span>
+            </li>
+            <li class="param-row">
+              <span class="param-name">Polyline GPS Stream</span>
+              <span class="param-value">Leaflet GeoJSON Ready</span>
+            </li>
+            <li class="param-row">
+              <span class="param-name">DB Connection Layer</span>
+              <span class="param-value">Neon Cloud Zero-Latency</span>
+            </li>
+            <li class="param-row">
+              <span class="param-name">API Gateway Cache</span>
+              <span class="param-value clean-text">0% Rate Throttling</span>
+            </li>
+          </ul>
         </div>
-        <ul class="package-features">
-          <li>
-            <svg class="feature-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Automated 30-min Rest Break calculation
-          </li>
-          <li>
-            <svg class="feature-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Real-time polyline Leaflet route plotting
-          </li>
-          <li>
-            <svg class="feature-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            FMCSA-compliant visual daily log grid
-          </li>
-          <li>
-            <svg class="feature-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Zero-latency Neon Cloud Postgres sync
-          </li>
-        </ul>
-        <div class="package-footer">
-          <span class="ship-time">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            INSTANT DEPLOY
-          </span>
+        <div class="technical-readout-footer">
+          <span>System Uptime SLA &bull; 99.98% Operational</span>
         </div>
       </div>
     </div>
