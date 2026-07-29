@@ -1,7 +1,7 @@
 {% extends "admin/base.html" %}
-{% load static %}
+{% load i18n static %}
 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('HighwayHours Administration') }}{% endblock %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:'HighwayHours Administration' }}{% endblock %}
 
 {% block extrahead %}
 {{ block.super }}

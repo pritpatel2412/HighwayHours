@@ -18,7 +18,7 @@ DEBUG = os.environ.get("DEBUG", "False").lower() in ("true", "1", "yes")
 
 ALLOWED_HOSTS = [
     host.strip()
-    for host in os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1,.onrender.com,*").split(",")
+    for host in os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1,.onrender.com,testserver,*").split(",")
     if host.strip()
 ]
 
@@ -101,7 +101,7 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
